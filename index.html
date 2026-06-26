@@ -16,7 +16,7 @@
     .dot{width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 18px rgba(79,209,197,.75)}
     .clock{display:flex;gap:14px;align-items:center;color:var(--text);font-size:14px}
     .dock{position:absolute;left:16px;top:72px;display:flex;flex-direction:column;gap:12px;z-index:2}
-    .appicon{width:86px;min-height:90px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;cursor:pointer;transition:.15s transform,.15s background}
+    .appicon{width:86px;min-height:90px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;cursor:pointer;transition:.15s transform,.15s background;text-decoration:none;color:inherit}
     .appicon:hover{transform:translateY(-2px);background:rgba(255,255,255,.09)}
     .appicon .ico{width:34px;height:34px;display:grid;place-items:center;font-size:22px}
     .appicon .lbl{font-size:12px;color:var(--text)}
@@ -50,7 +50,6 @@
     .mini{font-size:12px;color:var(--muted)}
     .settingsRow{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06)}
     .settingsRow:last-child{border-bottom:0}
-    .toggle{display:flex;gap:8px;align-items:center}
     .pill{padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);font-size:12px;color:var(--muted)}
   </style>
 </head>
@@ -62,13 +61,30 @@
     </div>
 
     <div class="dock">
-      <div class="appicon" data-open="calculator"><div class="ico">🧮</div><div class="lbl">Calculator</div></div>
-      <div class="appicon" data-open="settings"><div class="ico">⚙️</div><div class="lbl">Settings</div></div>
-      <div class="appicon" id="shutdownBtn"><div class="ico">⏻</div><div class="lbl">Shutdown</div></div>
+      <div class="appicon" data-open="calculator">
+        <div class="ico">🧮</div><div class="lbl">Calculator</div>
+      </div>
+      <div class="appicon" data-open="settings">
+        <div class="ico">⚙️</div><div class="lbl">Settings</div>
+      </div>
+      <!-- Flappy Bird link: opens in new tab -->
+      <a class="appicon" href="https://coderrcboy.github.io/flappybird./" target="_blank" rel="noopener">
+        <div class="ico">🐤</div><div class="lbl">Flappy Bird</div>
+      </a>
+      <div class="appicon" id="shutdownBtn">
+        <div class="ico">⏻</div><div class="lbl">Shutdown</div>
+      </div>
     </div>
 
+    <!-- Calculator -->
     <div class="window" id="calculatorWin" style="left:150px;top:84px;">
-      <div class="titlebar" data-drag="true"><div class="title">Calculator</div><div class="winbtns"><button class="wbtn wmin" title="Hide" onclick="hideWin('calculatorWin')"></button><button class="wbtn wclose" title="Close" onclick="closeApp('calculator')"></button></div></div>
+      <div class="titlebar" data-drag="true">
+        <div class="title">Calculator</div>
+        <div class="winbtns">
+          <button class="wbtn wmin" title="Hide" onclick="hideWin('calculatorWin')"></button>
+          <button class="wbtn wclose" title="Close" onclick="closeApp('calculator')"></button>
+        </div>
+      </div>
       <div class="content">
         <div class="card">
           <div id="calcDisplay" class="calcDisplay">0</div>
@@ -96,19 +112,44 @@
       </div>
     </div>
 
+    <!-- Settings -->
     <div class="window" id="settingsWin" style="left:180px;top:110px;height:min(420px,68vh);width:min(380px,92vw);">
-      <div class="titlebar" data-drag="true"><div class="title">Settings</div><div class="winbtns"><button class="wbtn wmin" title="Hide" onclick="hideWin('settingsWin')"></button><button class="wbtn wclose" title="Close" onclick="closeApp('settings')"></button></div></div>
+      <div class="titlebar" data-drag="true">
+        <div class="title">Settings</div>
+        <div class="winbtns">
+          <button class="wbtn wmin" title="Hide" onclick="hideWin('settingsWin')"></button>
+          <button class="wbtn wclose" title="Close" onclick="closeApp('settings')"></button>
+        </div>
+      </div>
       <div class="content">
         <div class="card">
-          <div class="settingsRow"><div><div>Time & Date</div><div class="mini">Synced to system/browser clock</div></div><div class="pill" id="tzPill"></div></div>
-          <div class="settingsRow"><div><div>User</div><div class="mini" id="userMini">Not set</div></div><button class="ghost" onclick="resetUser()">Change Name</button></div>
-          <div class="settingsRow"><div><div>Future apps</div><div class="mini">Use the launcher structure to add apps later</div></div><div class="pill">Ready</div></div>
-          <div class="settingsRow"><div><div>Browser app</div><div class="mini">Can be added later as a window inside WebOS</div></div><div class="pill">Planned</div></div>
+          <div class="settingsRow">
+            <div>
+              <div>Time & Date</div>
+              <div class="mini">Synced to system/browser clock</div>
+            </div>
+            <div class="pill" id="tzPill"></div>
+          </div>
+          <div class="settingsRow">
+            <div>
+              <div>User</div>
+              <div class="mini" id="userMini">Not set</div>
+            </div>
+            <button class="ghost" onclick="resetUser()">Change Name</button>
+          </div>
+          <div class="settingsRow">
+            <div>
+              <div>Future apps</div>
+              <div class="mini">Use this launcher to add more apps and games.</div>
+            </div>
+            <div class="pill">Ready</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Welcome -->
   <div class="welcome" id="welcome">
     <div class="welcomeBox">
       <h2 id="welcomeTitle">Welcome</h2>
@@ -123,6 +164,7 @@
     </div>
   </div>
 
+  <!-- Shutdown -->
   <div class="shade" id="shade">
     <h1>Shut down</h1>
     <p>Click anywhere to restart WebOS Lite.</p>
@@ -134,7 +176,6 @@
     let expr = '';
     let z = 30;
 
-    const desktop = document.getElementById('desktop');
     const welcome = document.getElementById('welcome');
     const shade = document.getElementById('shade');
 
@@ -202,11 +243,13 @@
     }
     function openWin(id){
       const win = document.getElementById(id);
+      if(!win) return;
       win.style.display = 'block';
       bringToFront(win);
     }
     function hideWin(id){
-      document.getElementById(id).style.display = 'none';
+      const win = document.getElementById(id);
+      if(win) win.style.display = 'none';
     }
     function closeApp(app){
       if(app === 'calculator') hideWin('calculatorWin');
@@ -226,6 +269,7 @@
       showWelcome();
     });
 
+    // Calculator
     function calcRender(){
       document.getElementById('calcDisplay').textContent = expr || '0';
     }
@@ -252,9 +296,11 @@
       calcRender();
     }
 
+    // Draggable windows
     function makeDraggable(win){
       const bar = win.querySelector('.titlebar');
       let startX = 0, startY = 0, origX = 0, origY = 0, dragging = false;
+      if(!bar) return;
       bar.addEventListener('pointerdown', (e) => {
         dragging = true;
         bringToFront(win);
@@ -290,6 +336,5 @@
       renderUser();
     });
   </script>
-  </body>>
-  </html>
-  
+</body>
+</html>
