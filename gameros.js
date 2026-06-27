@@ -76,7 +76,7 @@ function resetUser(){
   renderUser();
 }
 
-// Active window + z-index
+// tabs overlap priority
 function bringToFront(win){
   document.querySelectorAll('.window').forEach(w => w.classList.remove('active'));
   win.classList.add('active');
@@ -110,7 +110,7 @@ function openGoogleSearch(){
   window.open(url, '_blank');
 }
 
-// Calculator logic
+// Calculator code for functioning
 function calcRender(){
   document.getElementById('calcDisplay').textContent = expr || '0';
 }
@@ -137,7 +137,7 @@ function calcEval(){
   calcRender();
 }
 
-// Draggable windows
+// Draggable tabs and apps
 function makeDraggable(win){
   const bar = win.querySelector('.titlebar');
   let startX = 0, startY = 0, origX = 0, origY = 0, dragging = false;
@@ -171,17 +171,17 @@ function wireEvents(){
     el.addEventListener('click', () => openWin(el.dataset.open + 'Win'));
   });
 
-  // Minimize buttons
+  // Minimize button
   document.querySelectorAll('[data-minimize]').forEach(btn => {
     btn.addEventListener('click', () => hideWin(btn.dataset.minimize));
   });
 
-  // Close buttons
+  // Close button
   document.querySelectorAll('[data-close]').forEach(btn => {
     btn.addEventListener('click', () => closeApp(btn.dataset.close));
   });
 
-  // Shutdown
+  // Shutdown and close os
   const shutdownBtn = document.getElementById('shutdownBtn');
   shutdownBtn.addEventListener('click', () => {
     shade.style.display = 'flex';
@@ -192,7 +192,7 @@ function wireEvents(){
     showWelcome();
   });
 
-  // Welcome actions
+  // Welcome popup tab
   document.getElementById('saveNameBtn').addEventListener('click', saveName);
   document.getElementById('guestModeBtn').addEventListener('click', guestMode);
   document.getElementById('resetUserBtn').addEventListener('click', resetUser);
@@ -230,7 +230,7 @@ function wireEvents(){
   });
 }
 
-// Init
+// startup page.
 window.addEventListener('load', () => {
   showWelcome();
   renderUser();
