@@ -23,9 +23,9 @@ html,body{
   margin:0;
   overflow:hidden;
   background:
-    radial-gradient(1200px 700px at 20% 10%, #123055 0%, transparent 45%),
-    linear-gradient(180deg,var(--bg2),var(--bg1)),
-    url('backdrop.jpg'); /* new pic for bg */
+    radial-gradient(1200px 700px at 20% 10%, rgba(18,48,85,0.45) 0%, transparent 50%),
+    linear-gradient(180deg, rgba(11,23,48,0.85), rgba(7,17,31,0.85)),
+    url('backdrop.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
