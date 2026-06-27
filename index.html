@@ -3,61 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WebOS Lite</title>
-  <style>
-    :root{--bg1:#07111f;--bg2:#0b1730;--panel:rgba(15,23,42,.72);--panel2:rgba(3,7,18,.88);--text:#e5eefb;--muted:#9fb3c8;--accent:#4fd1c5;--accent2:#60a5fa;--danger:#f87171;--shadow:0 24px 60px rgba(0,0,0,.35)}
-    *{box-sizing:border-box;font-family:Segoe UI,Roboto,Arial,sans-serif}
-    html,body{width:100%;height:100%;margin:0;overflow:hidden;background:radial-gradient(1200px 700px at 20% 10%, #123055 0%, transparent 45%),linear-gradient(180deg,var(--bg2),var(--bg1))}
-    body{color:var(--text)}
-    button,input{font:inherit}
-    .desktop{position:relative;width:100%;height:100%;user-select:none}
-    .topbar{position:absolute;left:0;right:0;top:0;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.06);z-index:10}
-    .brand{display:flex;gap:10px;align-items:center;font-weight:700}
-    .dot{width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 18px rgba(79,209,197,.75)}
-    .clock{display:flex;gap:14px;align-items:center;color:var(--text);font-size:14px}
-    .dock{position:absolute;left:16px;top:72px;display:flex;flex-direction:column;gap:12px;z-index:2}
-    .appicon{width:86px;min-height:90px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;cursor:pointer;transition:.15s transform,.15s background;text-decoration:none;color:inherit}
-    .appicon:hover{transform:translateY(-2px);background:rgba(255,255,255,.09)}
-    .appicon .ico{width:34px;height:34px;display:grid;place-items:center;font-size:22px}
-    .appicon .lbl{font-size:12px;color:var(--text)}
-    .window{position:absolute;width:min(420px,92vw);height:min(520px,78vh);left:140px;top:96px;background:var(--panel);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.10);border-radius:16px;box-shadow:var(--shadow);overflow:hidden;display:none;z-index:20}
-    .titlebar{height:42px;display:flex;align-items:center;justify-content:space-between;padding:0 10px 0 12px;background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));border-bottom:1px solid rgba(255,255,255,.08);cursor:move}
-    .titlebar .title{font-weight:700;font-size:14px}
-    .winbtns{display:flex;gap:8px}
-    .wbtn{width:12px;height:12px;border-radius:50%;border:0;cursor:pointer}
-    .wclose{background:var(--danger)}
-    .wmin{background:#fbbf24}
-    .wmax{background:#4ade80}
-    .content{height:calc(100% - 42px);padding:14px;overflow:auto}
-    .card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:14px}
-    .welcome{position:fixed;inset:0;background:rgba(2,6,23,.72);display:none;align-items:center;justify-content:center;z-index:50}
-    .welcomeBox{width:min(360px,92vw);background:var(--panel2);border:1px solid rgba(255,255,255,.08);border-radius:18px;box-shadow:var(--shadow);padding:18px}
-    .welcomeBox h2{margin:0 0 8px 0;font-size:22px}
-    .welcomeBox p{margin:0 0 14px 0;color:var(--muted);line-height:1.4}
-    .inputRow{display:flex;gap:10px}
-    .textin{flex:1;padding:11px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.05);color:var(--text);outline:none}
-    .primary{padding:11px 14px;border:0;border-radius:10px;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#04111b;font-weight:700;cursor:pointer}
-    .ghost{padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:var(--text);cursor:pointer}
-    .shade{position:fixed;inset:0;background:#020814;display:none;align-items:center;justify-content:center;z-index:60;flex-direction:column;text-align:center;padding:20px}
-    .shade h1{margin:0 0 8px 0;font-size:28px}
-    .shade p{margin:0;color:var(--muted)}
-    .calcDisplay{height:72px;border-radius:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);display:flex;align-items:flex-end;justify-content:flex-end;padding:14px;font-size:28px;overflow:hidden;margin-bottom:12px}
-    .keys{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-    .key{padding:14px 0;border-radius:12px;border:0;background:rgba(255,255,255,.06);color:var(--text);cursor:pointer;font-size:16px}
-    .key.op{background:rgba(79,209,197,.12);color:var(--accent);font-weight:700}
-    .key.eq{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#04111b;font-weight:800}
-    .key.del{background:rgba(248,113,113,.12);color:#fda4af}
-    .mini{font-size:12px;color:var(--muted)}
-    .settingsRow{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06)}
-    .settingsRow:last-child{border-bottom:0}
-    .pill{padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);font-size:12px;color:var(--muted)}
-  </style>
+  <title>GamerOS- by Shyam</title>
+  <link rel="stylesheet" href="gamerosbg.css" />
 </head>
 <body>
   <div class="desktop" id="desktop">
     <div class="topbar">
-      <div class="brand"><span class="dot"></span><span id="greetTop">WebOS Lite</span></div>
-      <div class="clock"><span id="dateTxt"></span><span id="timeTxt" class="pill"></span></div>
+      <div class="brand">
+        <span class="dot"></span>
+        <span id="greetTop">GamerOS- by Shyam</span>
+      </div>
+      <div class="clock">
+        <span id="dateTxt"></span>
+        <span id="timeTxt" class="pill"></span>
+      </div>
     </div>
 
     <div class="dock">
@@ -71,6 +30,9 @@
       <a class="appicon" href="https://coderrcboy.github.io/flappybird./" target="_blank" rel="noopener">
         <div class="ico">🐤</div><div class="lbl">Flappy Bird</div>
       </a>
+      <div class="appicon" data-open="chrome">
+        <div class="ico">🌐</div><div class="lbl">Chrome</div>
+      </div>
       <div class="appicon" id="shutdownBtn">
         <div class="ico">⏻</div><div class="lbl">Shutdown</div>
       </div>
@@ -78,35 +40,35 @@
 
     <!-- Calculator -->
     <div class="window" id="calculatorWin" style="left:150px;top:84px;">
-      <div class="titlebar" data-drag="true">
+      <div class="titlebar" data-drag="true" data-app="calculator">
         <div class="title">Calculator</div>
         <div class="winbtns">
-          <button class="wbtn wmin" title="Hide" onclick="hideWin('calculatorWin')"></button>
-          <button class="wbtn wclose" title="Close" onclick="closeApp('calculator')"></button>
+          <button class="wbtn wmin" data-minimize="calculatorWin" title="Hide"></button>
+          <button class="wbtn wclose" data-close="calculator" title="Close"></button>
         </div>
       </div>
       <div class="content">
         <div class="card">
           <div id="calcDisplay" class="calcDisplay">0</div>
           <div class="keys">
-            <button class="key del" onclick="calcClear()">C</button>
-            <button class="key del" onclick="calcBack()">⌫</button>
-            <button class="key op" onclick="calcPress('/')">÷</button>
-            <button class="key op" onclick="calcPress('*')">×</button>
-            <button class="key" onclick="calcPress('7')">7</button>
-            <button class="key" onclick="calcPress('8')">8</button>
-            <button class="key" onclick="calcPress('9')">9</button>
-            <button class="key op" onclick="calcPress('-')">−</button>
-            <button class="key" onclick="calcPress('4')">4</button>
-            <button class="key" onclick="calcPress('5')">5</button>
-            <button class="key" onclick="calcPress('6')">6</button>
-            <button class="key op" onclick="calcPress('+')">+</button>
-            <button class="key" onclick="calcPress('1')">1</button>
-            <button class="key" onclick="calcPress('2')">2</button>
-            <button class="key" onclick="calcPress('3')">3</button>
-            <button class="key eq" onclick="calcEval()">=</button>
-            <button class="key" onclick="calcPress('0')" style="grid-column: span 2;">0</button>
-            <button class="key" onclick="calcPress('.')">.</button>
+            <button class="key del" data-calc="clear">C</button>
+            <button class="key del" data-calc="back">⌫</button>
+            <button class="key op" data-calc-val="/">÷</button>
+            <button class="key op" data-calc-val="*">×</button>
+            <button class="key" data-calc-val="7">7</button>
+            <button class="key" data-calc-val="8">8</button>
+            <button class="key" data-calc-val="9">9</button>
+            <button class="key op" data-calc-val="-">−</button>
+            <button class="key" data-calc-val="4">4</button>
+            <button class="key" data-calc-val="5">5</button>
+            <button class="key" data-calc-val="6">6</button>
+            <button class="key op" data-calc-val="+">+</button>
+            <button class="key" data-calc-val="1">1</button>
+            <button class="key" data-calc-val="2">2</button>
+            <button class="key" data-calc-val="3">3</button>
+            <button class="key eq" data-calc="eval">=</button>
+            <button class="key" data-calc-val="0" style="grid-column: span 2;">0</button>
+            <button class="key" data-calc-val=".">.</button>
           </div>
         </div>
       </div>
@@ -114,11 +76,11 @@
 
     <!-- Settings -->
     <div class="window" id="settingsWin" style="left:180px;top:110px;height:min(420px,68vh);width:min(380px,92vw);">
-      <div class="titlebar" data-drag="true">
+      <div class="titlebar" data-drag="true" data-app="settings">
         <div class="title">Settings</div>
         <div class="winbtns">
-          <button class="wbtn wmin" title="Hide" onclick="hideWin('settingsWin')"></button>
-          <button class="wbtn wclose" title="Close" onclick="closeApp('settings')"></button>
+          <button class="wbtn wmin" data-minimize="settingsWin" title="Hide"></button>
+          <button class="wbtn wclose" data-close="settings" title="Close"></button>
         </div>
       </div>
       <div class="content">
@@ -135,15 +97,38 @@
               <div>User</div>
               <div class="mini" id="userMini">Not set</div>
             </div>
-            <button class="ghost" onclick="resetUser()">Change Name</button>
+            <button class="ghost" id="resetUserBtn">Change Name</button>
           </div>
           <div class="settingsRow">
             <div>
               <div>Future apps</div>
               <div class="mini">Use this launcher to add more apps and games.</div>
             </div>
-            <div class="pill">Ready</div>
+            <div class="pill">And..good to go.</div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chrome -->
+    <div class="window" id="chromeWin" style="left:210px;top:130px;height:min(520px,78vh);width:min(760px,96vw);">
+      <div class="titlebar" data-drag="true" data-app="chrome">
+        <div class="title">Chrome</div>
+        <div class="winbtns">
+          <button class="wbtn wmin" data-minimize="chromeWin" title="Hide"></button>
+          <button class="wbtn wclose" data-close="chrome" title="Close"></button>
+        </div>
+      </div>
+      <div class="content">
+        <div class="card" style="display:flex;flex-direction:column;gap:12px;">
+          <div class="mini">Search the web from GamerOS.</div>
+          <div class="inputRow">
+            <input class="textin" id="chromeQuery" type="text" placeholder="Search Google" />
+            <button class="primary" id="chromeSearchBtn">Search</button>
+          </div>
+          <button class="ghost" id="chromeHomeBtn">
+            Open Google homepage
+          </button>
         </div>
       </div>
     </div>
@@ -156,10 +141,10 @@
       <p id="welcomeMsg">Enter your name to start.</p>
       <div class="inputRow" id="nameRow">
         <input class="textin" id="nameInput" type="text" placeholder="Your name" />
-        <button class="primary" onclick="saveName()">Start</button>
+        <button class="primary" id="saveNameBtn">Start</button>
       </div>
       <div class="inputRow" style="margin-top:10px;justify-content:flex-end">
-        <button class="ghost" onclick="guestMode()">Use Guest</button>
+        <button class="ghost" id="guestModeBtn">Use Guest</button>
       </div>
     </div>
   </div>
@@ -167,174 +152,23 @@
   <!-- Shutdown -->
   <div class="shade" id="shade">
     <h1>Shut down</h1>
-    <p>Click anywhere to restart WebOS Lite.</p>
+    <p>Click anywhere to restart GamerOS- by Shyam.</p>
   </div>
 
-  <script>
-    const storageKey = 'webos_lite_user';
-    let currentUser = localStorage.getItem(storageKey) || '';
-    let expr = '';
-    let z = 30;
+  <!-- Taskbar (bottom) -->
+  <div class="taskbar">
+    <div class="quicklaunch">
+      <button class="taskbtn" data-open="calculator">Calc</button>
+      <button class="taskbtn" data-open="settings">Settings</button>
+      <button class="taskbtn" data-open="chrome">Chrome</button>
+    </div>
+    <div class="statuspanel">
+      <div class="stat" id="cpuStat">CPU 18%</div>
+      <div class="stat" id="ramStat">RAM 42%</div>
+      <div class="stat" id="batStat">Battery 87%</div>
+    </div>
+  </div>
 
-    const welcome = document.getElementById('welcome');
-    const shade = document.getElementById('shade');
-
-    function updateClock(){
-      const d = new Date();
-      document.getElementById('dateTxt').textContent = d.toLocaleDateString([], {weekday:'short', year:'numeric', month:'short', day:'numeric'});
-      document.getElementById('timeTxt').textContent = d.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit', second:'2-digit'});
-      document.getElementById('tzPill').textContent = Intl.DateTimeFormat().resolvedOptions().timeZone || 'Local time';
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
-
-    function renderUser(){
-      if(currentUser){
-        document.getElementById('greetTop').textContent = 'Welcome back, ' + currentUser;
-        document.getElementById('userMini').textContent = currentUser;
-      } else {
-        document.getElementById('greetTop').textContent = 'WebOS Lite';
-        document.getElementById('userMini').textContent = 'Not set';
-      }
-    }
-
-    function showWelcome(){
-      renderUser();
-      const first = !currentUser;
-      document.getElementById('welcomeTitle').textContent = first ? 'Welcome!' : 'Welcome back, ' + currentUser + '!';
-      document.getElementById('welcomeMsg').textContent = first ? 'Enter your name to personalize the OS.' : 'Continue to your desktop.';
-      document.getElementById('nameRow').style.display = first ? 'flex' : 'none';
-      welcome.style.display = 'flex';
-      if(!first) setTimeout(()=> welcome.style.display = 'none', 1200);
-    }
-    function saveName(){
-      const v = document.getElementById('nameInput').value.trim();
-      if(!v) return;
-      currentUser = v;
-      localStorage.setItem(storageKey, v);
-      renderUser();
-      document.getElementById('welcomeTitle').textContent = 'Hello, ' + v + '!';
-      document.getElementById('welcomeMsg').textContent = 'Loading your desktop...';
-      document.getElementById('nameRow').style.display = 'none';
-      setTimeout(()=> welcome.style.display = 'none', 900);
-    }
-    function guestMode(){
-      currentUser = 'Guest';
-      localStorage.setItem(storageKey, currentUser);
-      renderUser();
-      document.getElementById('welcomeTitle').textContent = 'Hello, Guest!';
-      document.getElementById('welcomeMsg').textContent = 'Loading your desktop...';
-      document.getElementById('nameRow').style.display = 'none';
-      setTimeout(()=> welcome.style.display = 'none', 700);
-    }
-    function resetUser(){
-      currentUser = '';
-      localStorage.removeItem(storageKey);
-      welcome.style.display = 'flex';
-      document.getElementById('nameRow').style.display = 'flex';
-      document.getElementById('nameInput').value = '';
-      document.getElementById('welcomeTitle').textContent = 'Welcome!';
-      document.getElementById('welcomeMsg').textContent = 'Enter your name to start.';
-      renderUser();
-    }
-
-    function bringToFront(win){
-      win.style.zIndex = ++z;
-    }
-    function openWin(id){
-      const win = document.getElementById(id);
-      if(!win) return;
-      win.style.display = 'block';
-      bringToFront(win);
-    }
-    function hideWin(id){
-      const win = document.getElementById(id);
-      if(win) win.style.display = 'none';
-    }
-    function closeApp(app){
-      if(app === 'calculator') hideWin('calculatorWin');
-      if(app === 'settings') hideWin('settingsWin');
-    }
-
-    document.querySelectorAll('[data-open]').forEach(el => {
-      el.addEventListener('click', () => openWin(el.dataset.open + 'Win'));
-    });
-
-    document.getElementById('shutdownBtn').addEventListener('click', () => {
-      shade.style.display = 'flex';
-      document.querySelectorAll('.window').forEach(w => w.style.display = 'none');
-    });
-    shade.addEventListener('click', () => {
-      shade.style.display = 'none';
-      showWelcome();
-    });
-
-    // Calculator
-    function calcRender(){
-      document.getElementById('calcDisplay').textContent = expr || '0';
-    }
-    function calcPress(ch){
-      expr += ch;
-      calcRender();
-    }
-    function calcClear(){
-      expr = '';
-      calcRender();
-    }
-    function calcBack(){
-      expr = expr.slice(0, -1);
-      calcRender();
-    }
-    function calcEval(){
-      try{
-        if(!/^[0-9+\-*/.() ]+$/.test(expr)) throw new Error('bad');
-        const result = Function('"use strict";return (' + expr + ')')();
-        expr = String(result);
-      }catch(e){
-        expr = 'Error';
-      }
-      calcRender();
-    }
-
-    // Draggable windows
-    function makeDraggable(win){
-      const bar = win.querySelector('.titlebar');
-      let startX = 0, startY = 0, origX = 0, origY = 0, dragging = false;
-      if(!bar) return;
-      bar.addEventListener('pointerdown', (e) => {
-        dragging = true;
-        bringToFront(win);
-        const r = win.getBoundingClientRect();
-        origX = r.left; origY = r.top;
-        startX = e.clientX; startY = e.clientY;
-        bar.setPointerCapture(e.pointerId);
-      });
-      bar.addEventListener('pointermove', (e) => {
-        if(!dragging) return;
-        const nx = origX + (e.clientX - startX);
-        const ny = origY + (e.clientY - startY);
-        win.style.left = Math.max(8, Math.min(window.innerWidth - win.offsetWidth - 8, nx)) + 'px';
-        win.style.top = Math.max(60, Math.min(window.innerHeight - win.offsetHeight - 8, ny)) + 'px';
-      });
-      bar.addEventListener('pointerup', () => dragging = false);
-      bar.addEventListener('pointercancel', () => dragging = false);
-    }
-
-    document.querySelectorAll('.window').forEach(makeDraggable);
-
-    document.addEventListener('keydown', (e) => {
-      if(e.key === 'Escape') shade.style.display = 'none';
-      if(document.getElementById('calculatorWin').style.display === 'block'){
-        if(/^[0-9+\-*/.]$/.test(e.key)) calcPress(e.key);
-        if(e.key === 'Backspace') calcBack();
-        if(e.key === 'Enter') calcEval();
-      }
-    });
-
-    window.addEventListener('load', () => {
-      showWelcome();
-      renderUser();
-    });
-  </script>
+  <script src="gameros.js"></script>
 </body>
 </html>
