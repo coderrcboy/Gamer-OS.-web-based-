@@ -24,7 +24,11 @@ html,body{
   overflow:hidden;
   background:
     radial-gradient(1200px 700px at 20% 10%, #123055 0%, transparent 45%),
-    linear-gradient(180deg,var(--bg2),var(--bg1));
+    linear-gradient(180deg,var(--bg2),var(--bg1)),
+    url('backdrop.jpg'); /* or 'backdrop.png' if that's the file */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 body{
