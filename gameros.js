@@ -4,32 +4,28 @@ const storageKey = 'webos_lite_user';
 let currentUser = localStorage.getItem(storageKey) || '';
 let expr = '';
 let z = 30;
-
 const welcome = document.getElementById('welcome');
 const shade = document.getElementById('shade');
-
 function updateClock(){
   const d = new Date();
   document.getElementById('dateTxt').textContent =
-    d.toLocaleDateString([], {weekday:'short', year:'numeric', month:'short', day:'numeric'});
+  d.toLocaleDateString([], {weekday:'short', year:'numeric', month:'short', day:'numeric'});
   document.getElementById('timeTxt').textContent =
-    d.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit', second:'2-digit'});
+  d.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit', second:'2-digit'});
   document.getElementById('tzPill').textContent =
-    Intl.DateTimeFormat().resolvedOptions().timeZone || 'Local time';
+ Intl.DateTimeFormat().resolvedOptions().timeZone || 'Local time';
 }
 setInterval(updateClock, 1000);
 updateClock();
-
 function renderUser(){
   if(currentUser){
-    document.getElementById('greetTop').textContent = 'Welcome back, ' + currentUser;
+   document.getElementById('greetTop').textContent = 'Welcome back, ' + currentUser;
     document.getElementById('userMini').textContent = currentUser;
   } else {
-    document.getElementById('greetTop').textContent = 'GamerOS- by Shyam';
+ document.getElementById('greetTop').textContent = 'GamerOS- by Shyam';
     document.getElementById('userMini').textContent = 'Not set';
   }
 }
-
 function showWelcome(){
   renderUser();
   const first = !currentUser;
@@ -42,7 +38,6 @@ function showWelcome(){
   welcome.style.display = 'flex';
   if(!first) setTimeout(()=> welcome.style.display = 'none', 1200);
 }
-
 function saveName(){
   const v = document.getElementById('nameInput').value.trim();
   if(!v) return;
@@ -54,7 +49,6 @@ function saveName(){
   document.getElementById('nameRow').style.display = 'none';
   setTimeout(()=> welcome.style.display = 'none', 900);
 }
-
 function guestMode(){
   currentUser = 'Guest';
   localStorage.setItem(storageKey, currentUser);
@@ -63,9 +57,7 @@ function guestMode(){
   document.getElementById('welcomeMsg').textContent = 'Loading your desktop...';
   document.getElementById('nameRow').style.display = 'none';
   setTimeout(()=> welcome.style.display = 'none', 700);
-}
-
-function resetUser(){
+}function resetUser(){
   currentUser = '';
   localStorage.removeItem(storageKey);
   welcome.style.display = 'flex';
@@ -74,43 +66,34 @@ function resetUser(){
   document.getElementById('welcomeTitle').textContent = 'Welcome!';
   document.getElementById('welcomeMsg').textContent = 'Enter your name to start.';
   renderUser();
-}
-
-// tabs overlap priority
+}// tabs overlap priority
 function bringToFront(win){
   document.querySelectorAll('.window').forEach(w => w.classList.remove('active'));
   win.classList.add('active');
   win.style.zIndex = ++z;
 }
-
 function openWin(id){
   const win = document.getElementById(id);
   if(!win) return;
   win.style.display = 'block';
   bringToFront(win);
 }
-
 function hideWin(id){
   const win = document.getElementById(id);
   if(win) win.style.display = 'none';
 }
-
 function closeApp(app){
   if(app === 'calculator') hideWin('calculatorWin');
   if(app === 'settings') hideWin('settingsWin');
   if(app === 'chrome') hideWin('chromeWin');
-}
-
-// Chrome search helper
+}// Chrome search helper
 function openGoogleSearch(){
   const q = document.getElementById('chromeQuery').value.trim();
   const url = q
     ? 'https://www.google.com/search?q=' + encodeURIComponent(q)
     : 'https://www.google.com';
   window.open(url, '_blank');
-}
-
-// Calculator code for functioning
+}// Calculator code for functioning
 function calcRender(){
   document.getElementById('calcDisplay').textContent = expr || '0';
 }
@@ -135,9 +118,7 @@ function calcEval(){
     expr = 'Error';
   }
   calcRender();
-}
-
-// Draggable tabs and apps
+}// Draggable tabs and apps
 function makeDraggable(win){
   const bar = win.querySelector('.titlebar');
   let startX = 0, startY = 0, origX = 0, origY = 0, dragging = false;
@@ -169,18 +150,14 @@ function wireEvents(){
   // App icons & taskbar buttons
   document.querySelectorAll('[data-open]').forEach(el => {
     el.addEventListener('click', () => openWin(el.dataset.open + 'Win'));
-  });
-
-  // Minimize button
+  }); // Minimize button
   document.querySelectorAll('[data-minimize]').forEach(btn => {
     btn.addEventListener('click', () => hideWin(btn.dataset.minimize));
   });
-
   // Close button
   document.querySelectorAll('[data-close]').forEach(btn => {
     btn.addEventListener('click', () => closeApp(btn.dataset.close));
   });
-
   // Shutdown and close os
   const shutdownBtn = document.getElementById('shutdownBtn');
   shutdownBtn.addEventListener('click', () => {
@@ -191,18 +168,15 @@ function wireEvents(){
     shade.style.display = 'none';
     showWelcome();
   });
-
   // Welcome popup tab
   document.getElementById('saveNameBtn').addEventListener('click', saveName);
   document.getElementById('guestModeBtn').addEventListener('click', guestMode);
   document.getElementById('resetUserBtn').addEventListener('click', resetUser);
-
   // Chrome actions
   document.getElementById('chromeSearchBtn').addEventListener('click', openGoogleSearch);
   document.getElementById('chromeHomeBtn').addEventListener('click', () => {
     window.open('https://www.google.com', '_blank');
   });
-
   // Calculator buttons
   document.querySelectorAll('[data-calc-val]').forEach(btn => {
     btn.addEventListener('click', () => calcPress(btn.dataset.calcVal));
@@ -215,10 +189,8 @@ function wireEvents(){
       if(action === 'eval') calcEval();
     });
   });
-
   // Draggable windows
   document.querySelectorAll('.window').forEach(makeDraggable);
-
   // Keyboard shortcuts for calculator
   document.addEventListener('keydown', (e) => {
     if(e.key === 'Escape') shade.style.display = 'none';
@@ -228,9 +200,7 @@ function wireEvents(){
       if(e.key === 'Enter') calcEval();
     }
   });
-}
-
-// startup page.
+}// startup page.
 window.addEventListener('load', () => {
   showWelcome();
   renderUser();
