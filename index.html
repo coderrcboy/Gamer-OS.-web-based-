@@ -1,110 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GamerOS- by Shyam</title>
-  <link rel="stylesheet" href="gamerosbg.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GamerOS- by Shyam</title>
+<link rel="stylesheet" href="gamerosbg.css" />
 </head>
 <body>
-  <div class="desktop" id="desktop">
-    <div class="topbar">
-      <div class="brand">
-        <span class="dot"></span>
-        <span id="greetTop">GamerOS- by Shyam</span>
-      </div>
-      <div class="clock">
-        <span id="dateTxt"></span>
-        <span id="timeTxt" class="pill"></span>
-      </div>
-    </div>
+<div class="desktop" id="desktop">
+<div class="topbar">
+<div class="brand">
+<span class="dot"></span>
+<span id="greetTop">GamerOS- by Shyam</span>
+</div>
+<div class="clock">
+<span id="dateTxt"></span>
+<span id="timeTxt" class="pill"></span>
+</div>
+</div>
+<div class="dock">
+<div class="appicon" data-open="calculator">
+<div class="ico">🧮</div><div class="lbl">Calculator</div>
+</div>
+   <div class="appicon" data-open="settings">
+<div class="ico">⚙️</div><div class="lbl">Settings</div>
+</div>
+<!-- Flappy Bird link: opens in new tab -->
+<a class="appicon" href="https://coderrcboy.github.io/flappybird./" target="_blank" rel="noopener">
+<div class="ico">🐤</div><div class="lbl">Flappy Bird</div>
+</a>
+<div class="appicon" data-open="chrome">
+<div class="ico">🌐</div><div class="lbl">Chrome</div>
+</div>
+<div class="appicon" id="shutdownBtn">
+<div class="ico">⏻</div><div class="lbl">Shutdown</div>
+ </div>
+</div>
 
-    <div class="dock">
-      <div class="appicon" data-open="calculator">
-        <div class="ico">🧮</div><div class="lbl">Calculator</div>
-      </div>
-      <div class="appicon" data-open="settings">
-        <div class="ico">⚙️</div><div class="lbl">Settings</div>
-      </div>
-      <!-- Flappy Bird link: opens in new tab -->
-      <a class="appicon" href="https://coderrcboy.github.io/flappybird./" target="_blank" rel="noopener">
-        <div class="ico">🐤</div><div class="lbl">Flappy Bird</div>
-      </a>
-      <div class="appicon" data-open="chrome">
-        <div class="ico">🌐</div><div class="lbl">Chrome</div>
-      </div>
-      <div class="appicon" id="shutdownBtn">
-        <div class="ico">⏻</div><div class="lbl">Shutdown</div>
-      </div>
-    </div>
-
-    <!-- Calculator -->
-    <div class="window" id="calculatorWin" style="left:150px;top:84px;">
-      <div class="titlebar" data-drag="true" data-app="calculator">
-        <div class="title">Calculator</div>
-        <div class="winbtns">
-          <button class="wbtn wmin" data-minimize="calculatorWin" title="Hide"></button>
-          <button class="wbtn wclose" data-close="calculator" title="Close"></button>
-        </div>
-      </div>
-      <div class="content">
-        <div class="card">
-          <div id="calcDisplay" class="calcDisplay">0</div>
-          <div class="keys">
-            <button class="key del" data-calc="clear">C</button>
-            <button class="key del" data-calc="back">⌫</button>
-            <button class="key op" data-calc-val="/">÷</button>
-            <button class="key op" data-calc-val="*">×</button>
-            <button class="key" data-calc-val="7">7</button>
-            <button class="key" data-calc-val="8">8</button>
-            <button class="key" data-calc-val="9">9</button>
-            <button class="key op" data-calc-val="-">−</button>
-            <button class="key" data-calc-val="4">4</button>
-            <button class="key" data-calc-val="5">5</button>
-            <button class="key" data-calc-val="6">6</button>
-            <button class="key op" data-calc-val="+">+</button>
-            <button class="key" data-calc-val="1">1</button>
-            <button class="key" data-calc-val="2">2</button>
-            <button class="key" data-calc-val="3">3</button>
-            <button class="key eq" data-calc="eval">=</button>
-            <button class="key" data-calc-val="0" style="grid-column: span 2;">0</button>
-            <button class="key" data-calc-val=".">.</button>
-          </div>
-        </div>
+ <!-- Calculator -->
+<div class="window" id="calculatorWin" style="left:150px;top:84px;">
+  <div class="titlebar" data-drag="true" data-app="calculator">
+ <div class="title">Calculator</div>
+<div class="winbtns">
+<button class="wbtn wmin" data-minimize="calculatorWin" title="Hide"></button>
+ <button class="wbtn wclose" data-close="calculator" title="Close"></button>
+</div>
+ </div>
+<div class="content">
+<div class="card">
+<div id="calcDisplay" class="calcDisplay">0</div>
+ <div class="keys">
+ <button class="key del" data-calc="clear">C</button>
+<button class="key del" data-calc="back">⌫</button>
+ <button class="key op" data-calc-val="/">÷</button>
+<button class="key op" data-calc-val="*">×</button>
+<button class="key" data-calc-val="7">7</button>
+ <button class="key" data-calc-val="8">8</button>
+  <button class="key" data-calc-val="9">9</button>
+  <button class="key op" data-calc-val="-">−</button>
+  <button class="key" data-calc-val="4">4</button>
+<button class="key" data-calc-val="5">5</button>          <button class="key" data-calc-val="6">6</button>
+   <button class="key op" data-calc-val="+">+</button>
+       <button class="key" data-calc-val="1">1</button>
+    <button class="key" data-calc-val="2">2</button>
+      <button class="key" data-calc-val="3">3</button>       <button class="key eq" data-calc="eval">=</button>
+     <button class="key" data-calc-val="0" style="grid-column: span 2;">0</button>       <button class="key" data-calc-val=".">.</button>
+     </div>    </div>
       </div>
     </div>
 
     <!-- Settings app -->
     <div class="window" id="settingsWin" style="left:180px;top:110px;height:min(420px,68vh);width:min(380px,92vw);">
-      <div class="titlebar" data-drag="true" data-app="settings">
+  <div class="titlebar" data-drag="true" data-app="settings">
         <div class="title">Settings</div>
-        <div class="winbtns">
+   <div class="winbtns">
           <button class="wbtn wmin" data-minimize="settingsWin" title="Hide"></button>
-          <button class="wbtn wclose" data-close="settings" title="Close"></button>
+    <button class="wbtn wclose" data-close="settings" title="Close"></button>
         </div>
       </div>
       <div class="content">
-        <div class="card">
-          <div class="settingsRow">
+        <div class="card">       <div class="settingsRow">
             <div>
-              <div>Time & Date</div>
-              <div class="mini">Synced to system/browser clock</div>
-            </div>
-            <div class="pill" id="tzPill"></div>
+         <div>Time & Date</div>
+         <div class="mini">Synced to system/browser clock</div>
+       </div>
+       <div class="pill" id="tzPill"></div>
           </div>
-          <div class="settingsRow">
-            <div>
-              <div>User</div>
-              <div class="mini" id="userMini">Not set</div>
-            </div>
+    <div class="settingsRow">
+      <div>
+        <div>User</div>          <div class="mini" id="userMini">Not set</div>
+       </div>
             <button class="ghost" id="resetUserBtn">Change Name</button>
           </div>
-          <div class="settingsRow">
-            <div>
-              <div>Future apps</div>
-              <div class="smallText">Use this launcher to add more apps and games.</div>
-            </div>
-            <div class="pill">And..good to go.</div>
+   <div class="settingsRow">
+            <div>     <div>Future apps</div>
+     <div class="smallText">Use this launcher to add more apps and games.</div>
+            </div>    <div class="pill">And..good to go.</div>
           </div>
         </div>
       </div>
@@ -112,40 +103,35 @@
 
     <!-- Chrome tabs external connections -->
     <div class="window" id="chromeWin" style="left:210px;top:130px;height:min(520px,78vh);width:min(760px,96vw);">
-      <div class="titlebar" data-drag="true" data-app="chrome">
-        <div class="title">Chrome</div>
-        <div class="winbtns">
-          <button class="wbtn wmin" data-minimize="chromeWin" title="Hide"></button>
-          <button class="wbtn wclose" data-close="chrome" title="Close"></button>
-        </div>
+   <div class="titlebar" data-drag="true" data-app="chrome">
+    <div class="title">Chrome</div>
+  <div class="winbtns">     <button class="wbtn wmin" data-minimize="chromeWin" title="Hide"></button>
+          <button class="wbtn wclose" data-close="chrome" title="Close"></button>   </div>
       </div>
-      <div class="content">
+ <div class="content">
         <div class="card" style="display:flex;flex-direction:column;gap:12px;">
-          <div class="mini">Search the web from GamerOS.</div>
-          <div class="inputRow">
-            <input class="textin" id="chromeQuery" type="text" placeholder="Search Google" />
-            <button class="primary" id="chromeSearchBtn">Search</button>
-          </div>
-          <button class="ghost" id="chromeHomeBtn">
-            Open Google homepage
-          </button>
-        </div>
+     <div class="mini">Search the web from GamerOS.</div>
+     <div class="inputRow">
+    <input class="textin" id="chromeQuery" type="text" placeholder="Search Google" />
+      <button class="primary" id="chromeSearchBtn">Search</button>
+    </div>
+     <button class="ghost" id="chromeHomeBtn">
+   Open Google homepage
+     </button>    </div>
       </div>
     </div>
   </div>
 
   <!-- Welcome popups -->
-  <div class="welcome" id="welcome">
-    <div class="welcomeBox">
-      <h2 id="welcomeTitle">Welcome</h2>
-      <p id="welcomeMsg">Enter your name to start.</p>
-      <div class="inputRow" id="nameRow">
-        <input class="textin" id="nameInput" type="text" placeholder="Your name" />
-        <button class="primary" id="saveNameBtn">Start</button>
+  <div class="welcome" id="welcome">  <div class="welcomeBox">
+  <h2 id="welcomeTitle">Welcome</h2> <p id="welcomeMsg">Enter your name to start.</p>
+  <div class="inputRow" id="nameRow">
+   <input class="textin" id="nameInput" type="text" placeholder="Your name" />
+  <button class="primary" id="saveNameBtn">Start</button>
       </div>
-      <div class="inputRow" style="margin-top:10px;justify-content:flex-end">
+ <div class="inputRow" style="margin-top:10px;justify-content:flex-end">
         <button class="ghost" id="guestModeBtn">Use Guest</button>
-      </div>
+  </div>
     </div>
   </div>
 
@@ -158,18 +144,14 @@
   <!-- Taskbar (bottom) -->
   <div class="taskbar">
     <div class="quicklaunch">
-      <button class="taskbtn" data-open="calculator">Calc</button>
-      <button class="taskbtn" data-open="settings">Settings</button>
-      <button class="taskbtn" data-open="chrome">Chrome</button>
-    </div>
-    <div class="statuspanel">
-      // fake static values. hope to sync real time
-      <div class="stat" id="cpuStat">CPU 18%</div>
-      <div class="stat" id="ramStat">RAM 42%</div>
-      <div class="stat" id="batStat">Battery 87%</div>
-    </div>
-  </div>
-
+    <button class="taskbtn" data-open="calculator">Calc</button>
+  <button class="taskbtn" data-open="settings">Settings</button>
+ <button class="taskbtn" data-open="chrome">Chrome</button></div><div class="statuspanel">
+ // fake static values. hope to sync real time
+ <div class="stat" id="cpuStat">CPU 18%</div> <div class="stat" id="ramStat">RAM 42%</div>
+ <div class="stat" id="batStat">Battery 87%</div>
+</div>
+</div>
   <script src="gameros.js"></script>
 </body>
 </html>
