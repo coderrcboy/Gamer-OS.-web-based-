@@ -100,10 +100,10 @@ button,input{
 }
 .appicon{
   width:86px;
-  min-height:90px;
-  border-radius:14px;
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.08);
+  height:86px;              /*makes th icons circular */
+  border-radius:50%;        
+  background:rgba(255, 255, 255, 0.589);
+  border:1px solid rgba(255,255,255,.589);
   box-shadow:var(--shadow);
   display:flex;
   flex-direction:column;
@@ -129,15 +129,16 @@ button,input{
   font-size:12px;
   color:var(--text);
 }
+/* window contrasts desktop */
 .window{
   position:absolute;
   width:min(420px,92vw);
   height:min(520px,78vh);
   left:140px;
   top:96px;
-  background:var(--panel);
-  backdrop-filter:blur(14px);
-  border:1px solid rgba(255,255,255,.10);
+  background:#ffffff;                             
+  backdrop-filter:blur(14px);                    
+  border:1px solid rgba(0,0,0,0.08);              
   border-radius:16px;
   box-shadow:var(--shadow);
   overflow:hidden;
@@ -179,12 +180,14 @@ button,input{
   height:calc(100% - 42px);
   padding:14px;
   overflow:auto;
+  color:#0f172a;              /* dark text inside windows */
 }
 .card{
   background:rgba(255,255,255,.05);
   border:1px solid rgba(255,255,255,.08);
   border-radius:14px;
   padding:14px;
+  color:#0f172a;              /* dark text inside card */
 }
 .taskbar{
   position:absolute;
@@ -284,8 +287,8 @@ button,input{
   padding:10px 12px;
   border-radius:10px;
   border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.04);
-  color:var(--text);
+  background:rgba(0, 0, 0, 0.04);
+  color:#111827;
   cursor:pointer;
 }
 .shade{
@@ -311,8 +314,8 @@ button,input{
 .calcDisplay{
   height:72px;
   border-radius:12px;
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.08);
+  background:#11151d;                /* light gray block on white */
+  border:1px solid #000000;
   display:flex;
   align-items:flex-end;
   justify-content:flex-end;
@@ -320,6 +323,17 @@ button,input{
   font-size:28px;
   overflow:hidden;
   margin-bottom:12px;
+  color:#c6d1e7;                      /* DARK digits in the calc display */
+}
+
+.key{
+  padding:14px 0;
+  border-radius:12px;
+  border:0;
+  background:rgba(0, 0, 0, 0.06);
+  color:#000000;              /* dark key labels (numbers, operators) */
+  cursor:pointer;
+  font-size:16px;
 }
 .keys{
   display:grid;
@@ -330,32 +344,41 @@ button,input{
   padding:14px 0;
   border-radius:12px;
   border:0;
-  background:rgba(255,255,255,.06);
-  color:var(--text);
+  background:rgba(255, 255, 255, 0);
+  color:#111827;
   cursor:pointer;
   font-size:16px;
 }
 
 .key.op{
-  background:rgba(79,209,197,.12);
+  background:rgba(59, 230, 212, 0.12);
   color:var(--accent);
   font-weight:700;
 }
 
 .key.eq{
   background:linear-gradient(90deg,var(--accent),var(--accent2));
-  color:#04111b;
+  color:#0c3c61;
   font-weight:800;
 }
 
 .key.del{
-  background:rgba(248,113,113,.12);
+  background:rgba(218, 66, 66, 0.12);
   color:#fda4af;
 }
 
-.smallText{
+.mini{
   font-size:12px;
-  color:var(--muted);
+  color:#4b5563;                           /* medium-dark gray */
+}
+
+.pill{
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(255, 255, 255, 0);
+  border:1px solid rgba(148,163,184,.7);   /* darker border */
+  font-size:12px;
+  color:#356bb8;                           /* readable on white */
 }
 .settingsRow{
   display:flex;
@@ -364,17 +387,10 @@ button,input{
   gap:10px;
   padding:10px 0;
   border-bottom:1px solid rgba(255,255,255,.06);
+  color:#0f172a;              /* dark labels like “Time & Date”, “User” */
 }
 .settingsRow:last-child{
   border-bottom:0;
-}
-.pill{
-  padding:6px 10px;
-  border-radius:999px;
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.08);
-  font-size:12px;
-  color:var(--muted);
 }
 iframe{
   display:block;
