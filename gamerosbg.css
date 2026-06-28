@@ -11,13 +11,10 @@
   --shadow:0 24px 60px rgba(0,0,0,.35);
   --taskbarH:56px;
 }
-
 *{
   box-sizing:border-box;
   font-family:Segoe UI,Roboto,Arial,sans-serif;
-}
-
-html,body{
+}html,body{
   width:100%;
   height:100%;
   margin:0;
@@ -30,15 +27,12 @@ html,body{
   background-position: center;
   background-repeat: no-repeat;
 }
-
 body{
   color:var(--text);
 }
-
 button,input{
   font:inherit;
 }
-
 .desktop{
   position:relative;
   width:100%;
@@ -46,7 +40,6 @@ button,input{
   user-select:none;
   padding-bottom:var(--taskbarH);
 }
-
 .desktop::before{
   content:"GAMEROS";
   position:absolute;
@@ -61,7 +54,6 @@ button,input{
   pointer-events:none;
   z-index:0;
 }
-
 .topbar{
   position:absolute;
   left:0;
@@ -77,14 +69,12 @@ button,input{
   border-bottom:1px solid rgba(255,255,255,.06);
   z-index:10;
 }
-
 .brand{
   display:flex;
   gap:10px;
   align-items:center;
   font-weight:700;
 }
-
 .dot{
   width:12px;
   height:12px;
@@ -92,7 +82,6 @@ button,input{
   background:var(--accent);
   box-shadow:0 0 18px rgba(79,209,197,.75);
 }
-
 .clock{
   display:flex;
   gap:14px;
@@ -100,7 +89,6 @@ button,input{
   color:var(--text);
   font-size:14px;
 }
-
 .dock{
   position:absolute;
   left:16px;
@@ -110,7 +98,6 @@ button,input{
   gap:12px;
   z-index:2;
 }
-
 .appicon{
   width:86px;
   min-height:90px;
@@ -127,13 +114,10 @@ button,input{
   transition:.15s transform,.15s background;
   text-decoration:none;
   color:inherit;
-}
-
-.appicon:hover{
+}.appicon:hover{
   transform:translateY(-2px);
   background:rgba(255,255,255,.09);
 }
-
 .appicon .ico{
   width:34px;
   height:34px;
@@ -141,12 +125,10 @@ button,input{
   place-items:center;
   font-size:22px;
 }
-
 .appicon .lbl{
   font-size:12px;
   color:var(--text);
 }
-
 .window{
   position:absolute;
   width:min(420px,92vw);
@@ -162,13 +144,10 @@ button,input{
   display:none;
   z-index:20;
 }
-
 .window.active{
   border-color:rgba(96,165,250,.85);
   box-shadow:0 0 0 2px rgba(96,165,250,.22), var(--shadow);
-}
-
-.titlebar{
+}.titlebar{
   height:42px;
   display:flex;
   align-items:center;
@@ -178,17 +157,14 @@ button,input{
   border-bottom:1px solid rgba(255,255,255,.08);
   cursor:move;
 }
-
 .titlebar .title{
   font-weight:700;
   font-size:14px;
 }
-
 .winbtns{
   display:flex;
   gap:8px;
 }
-
 .wbtn{
   width:12px;
   height:12px;
@@ -196,24 +172,20 @@ button,input{
   border:0;
   cursor:pointer;
 }
-
 .wclose{background:var(--danger);}
 .wmin{background:#fbbf24;}
 .wmax{background:#4ade80;}
-
 .content{
   height:calc(100% - 42px);
   padding:14px;
   overflow:auto;
 }
-
 .card{
   background:rgba(255,255,255,.05);
   border:1px solid rgba(255,255,255,.08);
   border-radius:14px;
   padding:14px;
 }
-
 .taskbar{
   position:absolute;
   left:0;
@@ -229,13 +201,11 @@ button,input{
   backdrop-filter:blur(12px);
   z-index:40;
 }
-
 .quicklaunch{
   display:flex;
   gap:10px;
   align-items:center;
 }
-
 .taskbtn{
   height:38px;
   min-width:38px;
@@ -246,17 +216,14 @@ button,input{
   color:var(--text);
   cursor:pointer;
 }
-
 .taskbtn:hover{
   background:rgba(255,255,255,.10);
 }
-
 .statuspanel{
   display:flex;
   gap:8px;
   align-items:center;
 }
-
 .stat{
   padding:6px 10px;
   border-radius:999px;
@@ -265,7 +232,6 @@ button,input{
   font-size:12px;
   color:var(--muted);
 }
-
 .welcome{
   position:fixed;
   inset:0;
@@ -275,7 +241,6 @@ button,input{
   justify-content:center;
   z-index:50;
 }
-
 .welcomeBox{
   width:min(360px,92vw);
   background:var(--panel2);
@@ -284,23 +249,19 @@ button,input{
   box-shadow:var(--shadow);
   padding:18px;
 }
-
 .welcomeBox h2{
   margin:0 0 8px 0;
   font-size:22px;
 }
-
 .welcomeBox p{
   margin:0 0 14px 0;
   color:var(--muted);
   line-height:1.4;
 }
-
 .inputRow{
   display:flex;
   gap:10px;
 }
-
 .textin{
   flex:1;
   padding:11px 12px;
@@ -310,7 +271,6 @@ button,input{
   color:var(--text);
   outline:none;
 }
-
 .primary{
   padding:11px 14px;
   border:0;
@@ -320,7 +280,6 @@ button,input{
   font-weight:700;
   cursor:pointer;
 }
-
 .ghost{
   padding:10px 12px;
   border-radius:10px;
@@ -329,7 +288,6 @@ button,input{
   color:var(--text);
   cursor:pointer;
 }
-
 .shade{
   position:fixed;
   inset:0;
@@ -342,17 +300,14 @@ button,input{
   text-align:center;
   padding:20px;
 }
-
 .shade h1{
   margin:0 0 8px 0;
   font-size:28px;
 }
-
 .shade p{
   margin:0;
   color:var(--muted);
 }
-
 .calcDisplay{
   height:72px;
   border-radius:12px;
@@ -366,13 +321,11 @@ button,input{
   overflow:hidden;
   margin-bottom:12px;
 }
-
 .keys{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:10px;
 }
-
 .key{
   padding:14px 0;
   border-radius:12px;
@@ -404,7 +357,6 @@ button,input{
   font-size:12px;
   color:var(--muted);
 }
-
 .settingsRow{
   display:flex;
   justify-content:space-between;
@@ -413,11 +365,9 @@ button,input{
   padding:10px 0;
   border-bottom:1px solid rgba(255,255,255,.06);
 }
-
 .settingsRow:last-child{
   border-bottom:0;
 }
-
 .pill{
   padding:6px 10px;
   border-radius:999px;
@@ -426,7 +376,6 @@ button,input{
   font-size:12px;
   color:var(--muted);
 }
-
 iframe{
   display:block;
 }
