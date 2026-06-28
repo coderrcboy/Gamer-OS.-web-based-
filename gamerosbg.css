@@ -97,19 +97,20 @@ button,input{
   flex-direction:column;
   gap:12px;
   z-index:2;
+  font-family:Consolas, 'Courier New', monospace;
 }
 .appicon{
   width:86px;
-  height:86px;              /*makes th icons circular */
-  border-radius:50%;        
-  background:rgba(255, 255, 255, 0.589);
-  border:1px solid rgba(255,255,255,.589);
+  height:86px;
+  border-radius:50%;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.08);
   box-shadow:var(--shadow);
   display:flex;
   flex-direction:column;
   align-items:center;
-  justify-content:center;
-  gap:8px;
+  justify-content:center;       /* center content vertically */
+  gap:0;                        /* no extra gap needed */
   cursor:pointer;
   transition:.15s transform,.15s background;
   text-decoration:none;
@@ -119,15 +120,13 @@ button,input{
   background:rgba(255,255,255,.09);
 }
 .appicon .ico{
-  width:34px;
-  height:34px;
-  display:grid;
-  place-items:center;
-  font-size:22px;
+  display:none;                
 }
 .appicon .lbl{
   font-size:12px;
   color:var(--text);
+  font-family:Consolas, 'Courier New', monospace;
+  text-align:center;
 }
 /* window contrasts desktop */
 .window{
@@ -180,7 +179,8 @@ button,input{
   height:calc(100% - 42px);
   padding:14px;
   overflow:auto;
-  color:#0f172a;              /* dark text inside windows */
+  color:#0f172a;                                 /* dark text on white */
+  font-family:Consolas, 'Courier New', monospace; /* digital-style with cluncky block letter window text */
 }
 .card{
   background:rgba(255,255,255,.05);
